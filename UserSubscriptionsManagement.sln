@@ -7,6 +7,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSubscriptionsManagement
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSubscriptionsManagement.Infrastructure", "UserSubscriptionsManagement.Infrastructure\UserSubscriptionsManagement.Infrastructure.csproj", "{4A7DB12A-9C6D-441F-B84F-9C9F3E96CC1F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{1EC26AD4-EB32-4376-A12E-61C34F69DE60}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Business", "Business", "{DDF2AA3D-03BC-465C-83CD-EEC55E36FD48}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{B101187E-5DFF-465D-9F55-33C1C020CF42}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSubscriptionsManagement.Services", "UserSubscriptionsManagement.Services\UserSubscriptionsManagement.Services.csproj", "{54C32DD1-84D4-481D-9746-E66F64C3A087}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +29,10 @@ Global
 		{4A7DB12A-9C6D-441F-B84F-9C9F3E96CC1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4A7DB12A-9C6D-441F-B84F-9C9F3E96CC1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4A7DB12A-9C6D-441F-B84F-9C9F3E96CC1F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{54C32DD1-84D4-481D-9746-E66F64C3A087}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{54C32DD1-84D4-481D-9746-E66F64C3A087}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{54C32DD1-84D4-481D-9746-E66F64C3A087}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{54C32DD1-84D4-481D-9746-E66F64C3A087}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
