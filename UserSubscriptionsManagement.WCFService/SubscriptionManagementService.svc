@@ -1,0 +1,3 @@
+﻿<%@ ServiceHost Language="C#" Debug="true" 
+     Service="UserSubscriptionsManagement.Contracts.ServiceContracts.ISubscriptionService, UserSubscriptionsManagement.Contracts" 
+     Factory="Autofac.Integration.Wcf.AutofacServiceHostFactory, Autofac.Integration.Wcf" %>

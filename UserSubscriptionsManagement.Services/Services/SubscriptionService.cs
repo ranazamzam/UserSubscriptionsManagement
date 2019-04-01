@@ -3,9 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using UserSubscriptionsManagement.Contracts.DataContracts;
 using UserSubscriptionsManagement.Domain.Interfaces;
 using UserSubscriptionsManagement.Domain.Models;
-using UserSubscriptionsManagement.Services.Interfaces;
+using UserSubscriptionsManagement.Contracts.ServiceContracts;
 
 namespace UserSubscriptionsManagement.Services.Services
 {
@@ -23,29 +24,49 @@ namespace UserSubscriptionsManagement.Services.Services
             _unitOfWork.Dispose();
         }
 
-        public Guid AddSubscription(Subscription user)
+        public Guid AddSubscription(SubscriptionData subscriptionData)
         {
-            throw new NotImplementedException();
+            var subscriptionEntity = subscriptionData.ToEntity();
+            _unitOfWork.Repository<Subscription>().Insert(subscriptionEntity);
+            _unitOfWork.Save();
+            return subscriptionEntity.Id;
         }
 
-        public bool DeleteSubscription(Guid subscription)
+        public bool DeleteSubscription(Guid subscriptionId)
         {
-            throw new NotImplementedException();
+            _unitOfWork.Repository<Subscription>().Delete(subscriptionId);
+            return _unitOfWork.Save() == 1 ? true : false;
         }
 
-        public List<Subscription> GetAllSubscriptions()
+        public List<SubscriptionData> GetAllSubscriptions()
         {
-            throw new NotImplementedException();
+            var subscriptions = _unitOfWork.Repository<Subscription>().GetAllNoTracking.ToList();
+            return subscriptions.ToModel();
         }
 
-        public Subscription GetSubscriptionById(int id)
+        public SubscriptionData GetSubscriptionById(int id)
         {
-            throw new NotImplementedException();
+            var subscription = _unitOfWork.Repository<Subscription>().GetById(id);
+
+            if (subscription == null)
+            {
+
+            }
+            
+            return subscription.ToModel();
         }
 
         public bool UpdateSubscription(Guid subscriptionId)
         {
-            throw new NotImplementedException();
+            var subscription = _unitOfWork.Repository<Subscription>().GetById(subscriptionId);
+
+            if (subscription == null)
+            {
+
+            }
+            
+            _unitOfWork.Repository<Subscription>().Update(subscription);
+            return _unitOfWork.Save() == 1 ? true : false;
         }
     }
 }

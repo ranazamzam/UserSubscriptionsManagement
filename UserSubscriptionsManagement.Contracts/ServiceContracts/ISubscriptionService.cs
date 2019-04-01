@@ -1,23 +1,29 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
 using System.Text;
 using System.Threading.Tasks;
 using UserSubscriptionsManagement.Contracts.DataContracts;
-using UserSubscriptionsManagement.Domain.Models;
 
-namespace UserSubscriptionsManagement.Services.Interfaces
+namespace UserSubscriptionsManagement.Contracts.ServiceContracts
 {
+    [ServiceContract]
     public interface ISubscriptionService
     {
-        SubscriptionData GetSubscriptionById(int id);
+        [OperationContract]
+        SubscriptionData GetSubscriptionById(Guid id);
 
+        [OperationContract]
         List<SubscriptionData> GetAllSubscriptions();
 
+        [OperationContract]
         Guid AddSubscription(SubscriptionData user);
 
+        [OperationContract]
         bool UpdateSubscription(Guid subscriptionId);
 
+        [OperationContract]
         bool DeleteSubscription(Guid subscription);
     }
 }
