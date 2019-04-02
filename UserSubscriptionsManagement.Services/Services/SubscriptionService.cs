@@ -44,7 +44,7 @@ namespace UserSubscriptionsManagement.Services.Services
             return subscriptions.ToModel();
         }
 
-        public SubscriptionData GetSubscriptionById(int id)
+        public SubscriptionData GetSubscriptionById(Guid id)
         {
             var subscription = _unitOfWork.Repository<Subscription>().GetById(id);
 

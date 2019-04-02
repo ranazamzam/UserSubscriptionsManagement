@@ -3,29 +3,25 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Logging;
+using System.Web.Http;
 using UserSubscriptionsManagement.Contracts.DataContracts;
 using UserSubscriptionsManagement.Contracts.ServiceContracts;
 
 namespace UserSubscriptionsManagement.WebAPI.Controllers
 {
-    public class SubscriptionController : Controller
+    public class SubscriptionController : ApiController
     {
         private readonly ISubscriptionService _subscriptionService;
-        private readonly ILogger _logger;
 
-        public SubscriptionController(ISubscriptionService subscriptionService, ILogger<SubscriptionController> logger)
+        public SubscriptionController(ISubscriptionService subscriptionService)
         {
             _subscriptionService = subscriptionService;
-            _logger = logger;
         }
 
         #region  Actions
-        [HttpGet]
+        [System.Web.Http.HttpGet]
         [Route("{id}")]
-        [ProducesResponseType(typeof(SubscriptionData), (int)HttpStatusCode.OK)]
-        public IActionResult GetSubscriptionById(Guid id)
+        public IHttpActionResult GetSubscriptionById(Guid id)
         {
             try
             {
@@ -35,15 +31,12 @@ namespace UserSubscriptionsManagement.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
                 throw new Exception("An exception occured.");
             }
         }
 
         [HttpGet]
-        [ProducesResponseType((int)HttpStatusCode.NotFound)]
-        [ProducesResponseType(typeof(List<SubscriptionData>), (int)HttpStatusCode.OK)]
-        public IActionResult GetAllSubscriptions()
+        public IHttpActionResult GetAllSubscriptions()
         {
             try
             {
@@ -58,24 +51,21 @@ namespace UserSubscriptionsManagement.WebAPI.Controllers
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
                 throw new Exception("An exception occured.");
             }
         }
 
         [HttpPost]
-        [ProducesResponseType(typeof(UserData), (int)HttpStatusCode.OK)]
-        public IActionResult AddSubscription(SubscriptionData subscription)
+        public IHttpActionResult AddSubscription(SubscriptionData subscription)
         {
             try
             {
                 var newId = _subscriptionService.AddSubscription(subscription);
 
-                return CreatedAtAction(nameof(GetSubscriptionById), new { id = newId }, subscription);
+                return Ok(subscription);
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
                 throw new Exception("An exception occured.");
             }
         }
@@ -83,35 +73,32 @@ namespace UserSubscriptionsManagement.WebAPI.Controllers
 
         [HttpPut]
         [Route("{id}")]
-        public IActionResult UpdateSubscription(Guid id)
+        public IHttpActionResult UpdateSubscription(Guid id)
         {
             try
             {
                 var success = _subscriptionService.UpdateSubscription(id);
 
-                return NoContent();
+                return Ok();
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
                 throw new Exception("An exception occured.");
             }
         }
 
         [HttpDelete]
         [Route("{id}")]
-        [ProducesResponseType(typeof(UserData), (int)HttpStatusCode.OK)]
-        public IActionResult DeleteSubscription(Guid id)
+        public IHttpActionResult DeleteSubscription(Guid id)
         {
             try
             {
                 var success = _subscriptionService.DeleteSubscription(id);
 
-                return NoContent();
+                return Ok();
             }
             catch (Exception ex)
             {
-                _logger.LogCritical(ex.Message);
                 throw new Exception("An exception occured.");
             }
         }

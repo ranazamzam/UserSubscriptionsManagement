@@ -19,7 +19,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSubscriptionsManagement
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSubscriptionsManagement.WCFService", "UserSubscriptionsManagement.WCFService\UserSubscriptionsManagement.WCFService.csproj", "{C89958DE-EAF4-4271-856D-3D7C0FC42D75}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSubscriptionsManagement.WebAPI", "UserSubscriptionsManagement.WebAPI\UserSubscriptionsManagement.WebAPI.csproj", "{7075D38C-4947-4774-A501-3EA81BCD3DC9}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSubscriptionsManagement.WebAPI", "UserSubscriptionsManagement.WebAPI\UserSubscriptionsManagement.WebAPI.csproj", "{BDA79282-5EE8-4142-90CC-330077283974}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -47,10 +47,10 @@ Global
 		{C89958DE-EAF4-4271-856D-3D7C0FC42D75}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C89958DE-EAF4-4271-856D-3D7C0FC42D75}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C89958DE-EAF4-4271-856D-3D7C0FC42D75}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7075D38C-4947-4774-A501-3EA81BCD3DC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7075D38C-4947-4774-A501-3EA81BCD3DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7075D38C-4947-4774-A501-3EA81BCD3DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7075D38C-4947-4774-A501-3EA81BCD3DC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BDA79282-5EE8-4142-90CC-330077283974}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BDA79282-5EE8-4142-90CC-330077283974}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BDA79282-5EE8-4142-90CC-330077283974}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BDA79282-5EE8-4142-90CC-330077283974}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
