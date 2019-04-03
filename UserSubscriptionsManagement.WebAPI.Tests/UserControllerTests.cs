@@ -83,6 +83,48 @@ namespace UserSubscriptionsManagement.WebAPI.Tests
             Assert.That(ex.Message, Is.EqualTo("Exception of type 'System.Exception' was thrown."));
         }
 
+        [Test]
+        public void GetUserById_InvalidId_ShouldReturnBadRequest()
+        {
+            // Arrange
+            _userController = new UserController(_mockUserService.Object);
+
+            // Act
+            var response = _userController.GetUserById(-1);
+
+            var badRequestResult = response as BadRequestResult;
+
+            // Assert
+            Assert.IsNotNull(badRequestResult);
+        }
+
+        [Test]
+        public void AddUser_ShouldReturnOk()
+        {
+            // Arrange
+            _mockUserService.Setup(p => p.AddUser(It.IsAny<UserData>())).Callback(new Action<UserData>(newUser =>
+            {
+                var lastUserId = _users.Last().Id;
+                var nextUserId = lastUserId + 1;
+                newUser.Id = nextUserId;
+                _users.Add(newUser);
+            }));
+            _userController = new UserController(_mockUserService.Object);
+            var usersCountBeforeAdd = _users.Count;
+
+            // Act
+            var response = _userController.AddUser(new UserData
+            {
+                FirstName = "test first 3",
+                LastName = "test last 3",
+                Email = "e@gmail.com"
+            });
+
+            // Assert
+            var okResult = response as OkResult;
+            Assert.IsNotNull(okResult);
+            Assert.AreEqual(usersCountBeforeAdd + 1, _users.Count);
+        }
 
         #region Helpers and Data Initializer
         private List<UserData> SetUpUsers()
