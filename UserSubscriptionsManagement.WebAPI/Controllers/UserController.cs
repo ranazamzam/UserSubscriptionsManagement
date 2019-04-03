@@ -54,7 +54,7 @@ namespace UserSubscriptionsManagement.WebAPI.Controllers
         {
             var newUserId = _userService.AddUser(user);
 
-            return Ok(user);
+            return Ok();
         }
 
         [HttpDelete]

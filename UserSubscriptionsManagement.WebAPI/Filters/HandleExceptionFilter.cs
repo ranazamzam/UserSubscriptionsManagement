@@ -29,7 +29,7 @@ namespace UserSubscriptionsManagement.WebAPI.Filters
             }
             else if (actionExecutedContext.Exception is FaultException<BusinessRuleFaultException>)
             {
-                response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                response = new HttpResponseMessage(HttpStatusCode.BadRequest)
                 {
                     Content = new StringContent(((FaultException<BusinessRuleFaultException>)actionExecutedContext.Exception).Detail.Message),
                     ReasonPhrase = "Business rules cannot be violated"
@@ -37,13 +37,12 @@ namespace UserSubscriptionsManagement.WebAPI.Filters
             }
             else if (actionExecutedContext.Exception is FaultException)
             {
-                response = new HttpResponseMessage(HttpStatusCode.NotFound)
+                response = new HttpResponseMessage(HttpStatusCode.InternalServerError)
                 {
                     Content = new StringContent(((FaultException)actionExecutedContext.Exception).Message),
                     ReasonPhrase = "An internal error occured"
                 };
             }
-
             else
             {
                 var exceptionMessage = string.Empty;

@@ -9,6 +9,7 @@ using UserSubscriptionsManagement.Contracts.ServiceContracts;
 
 namespace UserSubscriptionsManagement.WebAPI.Controllers
 {
+    [RoutePrefix("api/subscriptions")]
     public class SubscriptionController : ApiController
     {
         private readonly ISubscriptionService _subscriptionService;
@@ -29,6 +30,7 @@ namespace UserSubscriptionsManagement.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Route("")]
         public IHttpActionResult GetAllSubscriptions()
         {
             var subscriptions = _subscriptionService.GetAllSubscriptions();
@@ -42,11 +44,12 @@ namespace UserSubscriptionsManagement.WebAPI.Controllers
         }
 
         [HttpPost]
+        [Route("")]
         public IHttpActionResult AddSubscription(SubscriptionData subscription)
         {
             var newId = _subscriptionService.AddSubscription(subscription);
 
-            return Ok(subscription);
+            return Ok();
         }
 
 

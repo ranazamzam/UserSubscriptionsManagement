@@ -145,7 +145,6 @@
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\SubscriptionController.cs" />
     <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="App_Start\DIModule.cs" />
     <Compile Include="Filters\HandleExceptionFilter.cs" />
     <Compile Include="Global.asax.cs">

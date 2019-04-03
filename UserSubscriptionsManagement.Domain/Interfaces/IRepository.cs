@@ -204,8 +204,7 @@ namespace UserSubscriptionsManagement.Domain.Interfaces
         /// <typeparam name="TProperty">The Property to Include in Eager Loading</typeparam>
         /// <param name="includedExpression">the Expression to Include</param>
         /// <returns></returns>
-        T GetByIdInclude<T1, T2>(Expression<Func<T, bool>> @where, Expression<Func<T, T1>> includedProperties
-            , Expression<Func<T1, T2>> thenIncludedProperties);
+        T GetByIdInclude(Expression<Func<T, bool>> @where, params Expression<Func<T, object>>[] includedProperties);
 
 
         //TODO: Add FindIncluding Functions

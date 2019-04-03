@@ -84,8 +84,7 @@ namespace UserSubscriptionsManagement.Services.Services
         /// <returns></returns>
         public UserData GetUserById(int id)
         {
-            var user = _unitOfWork.Repository<User>()
-                .GetByIdInclude<ICollection<UserSubscription>, Subscription>(x => x.Id == id,y=>y.Subscriptions,z=>z.Subscription);
+            var user = _unitOfWork.Repository<User>().GetByIdInclude(x => x.Id == id, y => y.Subscriptions);
 
             if (user == null)
             {
@@ -101,9 +100,12 @@ namespace UserSubscriptionsManagement.Services.Services
 
             foreach (var subscription in user.Subscriptions)
             {
-                userData.Subscriptions.Add(subscription.Subscription.ToModel());
+                var subscriptionDetails = _unitOfWork.Repository<Subscription>().GetById(subscription.SubscriptionId);
+                userData.Subscriptions.Add(subscriptionDetails.ToModel());
             }
 
+            userData.TotalPriceIncVatAmount = userData.Subscriptions.Sum(item => item.PriceIncVatAmount);
+            userData.TotalCallMinutes = userData.Subscriptions.Sum(item => item.CallMinutes);
             return userData;
         }
 

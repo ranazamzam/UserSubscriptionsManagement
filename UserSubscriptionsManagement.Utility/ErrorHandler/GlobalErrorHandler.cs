@@ -6,6 +6,7 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 using System.Text;
 using System.Threading.Tasks;
+using UserSubscriptionsManagement.Contracts.DataContracts;
 
 namespace UserSubscriptionsManagement.Utility
 {
@@ -24,6 +25,16 @@ namespace UserSubscriptionsManagement.Utility
 
         public void ProvideFault(Exception error, MessageVersion version, ref Message fault)
         {
+            if(error is FaultException<DataNotFoundFaultException>)
+            {
+                return;
+            }
+
+            if (error is FaultException<BusinessRuleFaultException>)
+            {
+                return;
+            }
+
             var exception = new FaultException(
                string.Format(@"An exception occured {0}Method: {1}{2}Message: {3}",
                                         Environment.NewLine, error.TargetSite.Name, 

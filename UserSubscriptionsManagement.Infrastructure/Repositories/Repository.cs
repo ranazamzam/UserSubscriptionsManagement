@@ -407,16 +407,18 @@ namespace UserSubscriptionsManagement.Infrastructure.Repositories
         /// </summary>
         /// <param name="id">Identifier</param>
         /// <returns>Entity</returns>
-        public virtual T GetByIdInclude<T1,T2>(Expression<Func<T, bool>> @where, Expression<Func<T, T1>> includedProperties
-            , Expression<Func<T1, T2>> thenIncludedProperties)
+        public virtual T GetByIdInclude(Expression<Func<T, bool>> @where, params Expression<Func<T, object>>[] includedProperties)
         {
             var entities = DbSet.AsQueryable();
 
-            entities = entities.Include(includedProperties).ThenInclude(thenIncludedProperties);
+            foreach (var includedPropery in includedProperties)
+            {
+                entities = entities.Include(includedPropery);
+            }
 
-            entities = DbSet.Where<T>(@where);
+            //entities = DbSet.Where<T>(@where);
 
-            return entities.FirstOrDefault();
+            return entities.FirstOrDefault(@where);
         }
 
         /// <summary>

@@ -47,5 +47,11 @@
     <Compile Include="ErrorHandler\GlobalErrorHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UserSubscriptionsManagement.Contracts\UserSubscriptionsManagement.Contracts.csproj">
+      <Project>{CFDDF487-FA1E-48DF-87FC-66DF6C292565}</Project>
+      <Name>UserSubscriptionsManagement.Contracts</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

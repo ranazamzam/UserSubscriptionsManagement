@@ -15,10 +15,10 @@ namespace UserSubscriptionsManagement.Services
         public MappingProfile()
         {
             // Add Maps Here
-            CreateMap<User, UserData>()
-                .ForMember(dest => dest.TotalPriceIncVatAmount, m => m.MapFrom(src => src.Subscriptions.Sum(item => item.Subscription.PriceIncVatAmount)))
-                .ForMember(dest => dest.TotalCallMinutes, m => m.MapFrom(src => src.Subscriptions.Sum(item => item.Subscription.CallMinutes)));
-            CreateMap<UserData, User>();
+            CreateMap<User, UserData>().ForMember(dest => dest.Subscriptions, opt => opt.Ignore())
+                                       .ForMember(dest => dest.TotalPriceIncVatAmount, opt => opt.Ignore())
+                                       .ForMember(dest => dest.TotalCallMinutes, opt => opt.Ignore());
+            CreateMap<UserData, User>().ForMember(dest => dest.Subscriptions, opt => opt.Ignore());
             CreateMap<Subscription, SubscriptionData>().ReverseMap();
 
         }
@@ -63,7 +63,7 @@ namespace UserSubscriptionsManagement.Services
             return Mapper.Map<SubscriptionData>(entity);
         }
 
-        public static Subscription ToEntity(this SubscriptionData model,Subscription entity)
+        public static Subscription ToEntity(this SubscriptionData model, Subscription entity)
         {
             return Mapper.Map<SubscriptionData, Subscription>(model, entity);
         }
@@ -73,9 +73,19 @@ namespace UserSubscriptionsManagement.Services
             return Mapper.Map<List<UserData>>(entity);
         }
 
+        public static List<User> ToEntity(this List<UserData> model)
+        {
+            return Mapper.Map<List<User>>(model);
+        }
+
         public static List<SubscriptionData> ToModel(this List<Subscription> entity)
         {
             return Mapper.Map<List<SubscriptionData>>(entity);
+        }
+
+        public static List<Subscription> ToEntity(this List<SubscriptionData> model)
+        {
+            return Mapper.Map<List<Subscription>>(model);
         }
     }
 }
