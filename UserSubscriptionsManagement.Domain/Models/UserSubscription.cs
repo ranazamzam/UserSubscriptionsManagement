@@ -9,9 +9,9 @@ namespace UserSubscriptionsManagement.Domain.Models
     public class UserSubscription
     {
         public int UserId { get; set; }
-        public User User { get; set; }
+        public virtual User User { get; set; }
 
         public Guid SubscriptionId { get; set; }
-        public Subscription Subscription { get; set; }
+        public virtual Subscription Subscription { get; set; }
     }
 }

@@ -9,7 +9,7 @@ using UserSubscriptionsManagement.Contracts.ServiceContracts;
 
 namespace UserSubscriptionsManagement.WebAPI.Controllers
 {
-    [Route("api/users")]
+    [RoutePrefix("api/users")]
     public class UserController : ApiController
     {
         private readonly IUserService _userService;
@@ -22,90 +22,57 @@ namespace UserSubscriptionsManagement.WebAPI.Controllers
         #region  Actions
         [HttpGet]
         [Route("{id}")]
-        public IHttpActionResult GetUserById(int userId)
+        public IHttpActionResult GetUserById(int id)
         {
-            try
+            if (id <= 0)
             {
-                if (userId <= 0)
-                {
-                    return BadRequest();
-                }
-
-                var user = _userService.GetUserById(userId);
-
-                return Ok(user);
+                return BadRequest();
             }
-            catch (Exception ex)
-            {
-                throw new Exception("An exception occured.");
-            }
+
+            var user = _userService.GetUserById(id);
+
+            return Ok(user);
         }
 
         [HttpGet]
+        [Route("")]
         public IHttpActionResult GetAllUsers()
         {
-            try
-            {
-                var users = _userService.GetAllUsers();
+            var users = _userService.GetAllUsers();
 
-                if (users.Any())
-                {
-                    return Ok(users);
-                }
-
-                return NotFound();
-            }
-            catch (Exception ex)
+            if (users.Any())
             {
-                throw new Exception("An exception occured.");
+                return Ok(users);
             }
+
+            return NotFound();
         }
 
         [HttpPost]
+        [Route("")]
         public IHttpActionResult AddUser(UserData user)
         {
-            try
-            {
-                var newUserId = _userService.AddUser(user);
+            var newUserId = _userService.AddUser(user);
 
-                return Ok( user);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An exception occured.");
-            }
+            return Ok(user);
         }
 
         [HttpDelete]
         [Route("{id}")]
-        public IHttpActionResult DeleteUser(int userId)
+        public IHttpActionResult DeleteUser(int id)
         {
-            try
-            {
-                var success = _userService.DeleteUser(userId);
+            var success = _userService.DeleteUser(id);
 
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An exception occured.");
-            }
+            return Ok();
         }
 
         [HttpPut]
         [Route("{userId}/{subscriptionId}")]
         public IHttpActionResult AddSubsriptionToUser(int userId, Guid subscriptionId)
         {
-            try
-            {
-                var success = _userService.AddSubscriptionToUser(userId, subscriptionId);
+            var success = _userService.AddSubscriptionToUser(userId, subscriptionId);
 
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An exception occured.");
-            }
+            return Ok();
         }
         #endregion
     }

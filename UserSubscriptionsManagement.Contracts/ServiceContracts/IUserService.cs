@@ -12,6 +12,7 @@ namespace UserSubscriptionsManagement.Contracts.ServiceContracts
     public interface IUserService
     {
         [OperationContract]
+        [FaultContract(typeof(DataNotFoundFaultException))]
         UserData GetUserById(int id);
 
         [OperationContract]
@@ -21,9 +22,12 @@ namespace UserSubscriptionsManagement.Contracts.ServiceContracts
         int AddUser(UserData user);
 
         [OperationContract]
+        [FaultContract(typeof(DataNotFoundFaultException))]
         bool DeleteUser(int userId);
 
         [OperationContract]
+        [FaultContract(typeof(DataNotFoundFaultException))]
+        [FaultContract(typeof(BusinessRuleFaultException))]
         bool AddSubscriptionToUser(int userId, Guid subscriptionId);
     }
 }

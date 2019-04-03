@@ -12,6 +12,7 @@ namespace UserSubscriptionsManagement.Contracts.ServiceContracts
     public interface ISubscriptionService
     {
         [OperationContract]
+        [FaultContract(typeof(DataNotFoundFaultException))]
         SubscriptionData GetSubscriptionById(Guid id);
 
         [OperationContract]
@@ -21,9 +22,11 @@ namespace UserSubscriptionsManagement.Contracts.ServiceContracts
         Guid AddSubscription(SubscriptionData user);
 
         [OperationContract]
-        bool UpdateSubscription(Guid subscriptionId);
+        [FaultContract(typeof(DataNotFoundFaultException))]
+        bool UpdateSubscription(Guid id, SubscriptionData subscriptionData);
 
         [OperationContract]
-        bool DeleteSubscription(Guid subscription);
+        [FaultContract(typeof(DataNotFoundFaultException))]
+        bool DeleteSubscription(Guid id);
     }
 }

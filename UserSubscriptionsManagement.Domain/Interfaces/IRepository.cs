@@ -198,6 +198,16 @@ namespace UserSubscriptionsManagement.Domain.Interfaces
         /// </returns>       
         IQueryable<T> GetAllNoTracking { get; }
 
+        /// <summary>
+        /// Gets Entites Include Eager Loaded TProperty
+        /// </summary>
+        /// <typeparam name="TProperty">The Property to Include in Eager Loading</typeparam>
+        /// <param name="includedExpression">the Expression to Include</param>
+        /// <returns></returns>
+        T GetByIdInclude<T1, T2>(Expression<Func<T, bool>> @where, Expression<Func<T, T1>> includedProperties
+            , Expression<Func<T1, T2>> thenIncludedProperties);
+
+
         //TODO: Add FindIncluding Functions
         /// <summary>
         /// Gets All Entities Including Eager Loaded Relations

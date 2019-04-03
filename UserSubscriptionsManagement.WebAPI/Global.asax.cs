@@ -6,6 +6,7 @@ using System.Web.Http;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
+using UserSubscriptionsManagement.WebAPI.Filters;
 
 namespace UserSubscriptionsManagement.WebAPI
 {
@@ -17,8 +18,10 @@ namespace UserSubscriptionsManagement.WebAPI
             GlobalConfiguration.Configure(WebApiConfig.Register);
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
-            DIModule.BuildContainer();
+            DIModule.BuildContainer(GlobalConfiguration.Configuration);
+
+            GlobalConfiguration.Configuration.Filters.Add(new HandleExceptionFilter());
+
         }
     }
 }

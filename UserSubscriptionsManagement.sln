@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSubscriptionsManagement
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSubscriptionsManagement.WebAPI", "UserSubscriptionsManagement.WebAPI\UserSubscriptionsManagement.WebAPI.csproj", "{BDA79282-5EE8-4142-90CC-330077283974}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UserSubscriptionsManagement.Utility", "UserSubscriptionsManagement.Utility\UserSubscriptionsManagement.Utility.csproj", "{90DF6BC4-47A2-4A7B-8981-3697DBD243AD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +53,10 @@ Global
 		{BDA79282-5EE8-4142-90CC-330077283974}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{BDA79282-5EE8-4142-90CC-330077283974}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{BDA79282-5EE8-4142-90CC-330077283974}.Release|Any CPU.Build.0 = Release|Any CPU
+		{90DF6BC4-47A2-4A7B-8981-3697DBD243AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{90DF6BC4-47A2-4A7B-8981-3697DBD243AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{90DF6BC4-47A2-4A7B-8981-3697DBD243AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{90DF6BC4-47A2-4A7B-8981-3697DBD243AD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

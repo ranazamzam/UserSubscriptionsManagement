@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{54C32DD1-84D4-481D-9746-E66F64C3A087}</ProjectGuid>
+    <ProjectGuid>{90DF6BC4-47A2-4A7B-8981-3697DBD243AD}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>UserSubscriptionsManagement.Services</RootNamespace>
-    <AssemblyName>UserSubscriptionsManagement.Services</AssemblyName>
+    <RootNamespace>UserSubscriptionsManagement.Utility</RootNamespace>
+    <AssemblyName>UserSubscriptionsManagement.Utility</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -31,15 +31,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
-      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
-    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -48,30 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Interfaces\ISubscriptionService.cs" />
-    <Compile Include="Interfaces\IUserService.cs" />
-    <Compile Include="Interfaces\IUserSubscriptionService.cs" />
-    <Compile Include="MappingProfile.cs" />
+    <Compile Include="ErrorHandler\GlobalErrorBehaviorAttribute.cs" />
+    <Compile Include="ErrorHandler\GlobalErrorHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Services\SubscriptionService.cs" />
-    <Compile Include="Services\UserService.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\UserSubscriptionsManagement.Contracts\UserSubscriptionsManagement.Contracts.csproj">
-      <Project>{cfddf487-fa1e-48df-87fc-66df6c292565}</Project>
-      <Name>UserSubscriptionsManagement.Contracts</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UserSubscriptionsManagement.Domain\UserSubscriptionsManagement.Domain.csproj">
-      <Project>{62580d4a-30ff-438b-bc5c-d325d27ef349}</Project>
-      <Name>UserSubscriptionsManagement.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\UserSubscriptionsManagement.Utility\UserSubscriptionsManagement.Utility.csproj">
-      <Project>{90DF6BC4-47A2-4A7B-8981-3697DBD243AD}</Project>
-      <Name>UserSubscriptionsManagement.Utility</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

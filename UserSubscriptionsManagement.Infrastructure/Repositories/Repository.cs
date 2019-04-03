@@ -403,6 +403,23 @@ namespace UserSubscriptionsManagement.Infrastructure.Repositories
         }
 
         /// <summary>
+        /// Get entity by identifier
+        /// </summary>
+        /// <param name="id">Identifier</param>
+        /// <returns>Entity</returns>
+        public virtual T GetByIdInclude<T1,T2>(Expression<Func<T, bool>> @where, Expression<Func<T, T1>> includedProperties
+            , Expression<Func<T1, T2>> thenIncludedProperties)
+        {
+            var entities = DbSet.AsQueryable();
+
+            entities = entities.Include(includedProperties).ThenInclude(thenIncludedProperties);
+
+            entities = DbSet.Where<T>(@where);
+
+            return entities.FirstOrDefault();
+        }
+
+        /// <summary>
         /// Get entity by identifier Async
         /// </summary>
         /// <param name="id">Identifier</param>

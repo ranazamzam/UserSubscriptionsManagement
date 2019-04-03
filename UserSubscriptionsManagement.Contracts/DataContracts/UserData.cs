@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace UserSubscriptionsManagement.Contracts.DataContracts
 {
@@ -26,9 +22,9 @@ namespace UserSubscriptionsManagement.Contracts.DataContracts
         public ICollection<SubscriptionData> Subscriptions { get; set; }
 
         [DataMember]
-        public double TotalPriceIncVatAmount => Subscriptions.Sum(subscription => subscription.PriceIncVatAmount);
+        public double TotalPriceIncVatAmount { get; set; }
 
         [DataMember]
-        public double TotalCallMinutes => Subscriptions.Sum(subscription => subscription.CallMinutes);
+        public double TotalCallMinutes { get; set; }
     }
 }

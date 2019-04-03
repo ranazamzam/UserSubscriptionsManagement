@@ -15,11 +15,28 @@ namespace UserSubscriptionsManagement.Services
         public MappingProfile()
         {
             // Add Maps Here
-            CreateMap<User, UserData>().ReverseMap();
+            CreateMap<User, UserData>()
+                .ForMember(dest => dest.TotalPriceIncVatAmount, m => m.MapFrom(src => src.Subscriptions.Sum(item => item.Subscription.PriceIncVatAmount)))
+                .ForMember(dest => dest.TotalCallMinutes, m => m.MapFrom(src => src.Subscriptions.Sum(item => item.Subscription.CallMinutes)));
+            CreateMap<UserData, User>();
             CreateMap<Subscription, SubscriptionData>().ReverseMap();
-        }
 
+        }
     }
+
+    public class AutoMapperConfiguration
+    {
+        public static void Configure()
+        {
+            Mapper.Initialize(x =>
+            {
+                x.AddProfile<MappingProfile>();
+            });
+
+            Mapper.Configuration.AssertConfigurationIsValid();
+        }
+    }
+
 
     /// <summary>
     /// Mapping Extentions to Convert a Model To Entity and vice versa.
@@ -44,6 +61,11 @@ namespace UserSubscriptionsManagement.Services
         public static SubscriptionData ToModel(this Subscription entity)
         {
             return Mapper.Map<SubscriptionData>(entity);
+        }
+
+        public static Subscription ToEntity(this SubscriptionData model,Subscription entity)
+        {
+            return Mapper.Map<SubscriptionData, Subscription>(model, entity);
         }
 
         public static List<UserData> ToModel(this List<User> entity)

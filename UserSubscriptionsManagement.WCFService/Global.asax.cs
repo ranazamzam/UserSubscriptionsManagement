@@ -6,6 +6,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Security;
 using System.Web.SessionState;
+using UserSubscriptionsManagement.Services;
 
 namespace UserSubscriptionsManagement.WCFService
 {
@@ -16,6 +17,9 @@ namespace UserSubscriptionsManagement.WCFService
         {
             IContainer container = DIModule.BuildContainer();
             AutofacHostFactory.Container = container;
+
+            //Configure Automapper
+            AutoMapperConfiguration.Configure();
         }
 
         protected void Session_Start(object sender, EventArgs e)

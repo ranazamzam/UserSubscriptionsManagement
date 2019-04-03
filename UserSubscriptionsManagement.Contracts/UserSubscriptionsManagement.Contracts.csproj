@@ -43,6 +43,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataContracts\BusinessRuleFaultException.cs" />
+    <Compile Include="DataContracts\FaultExceptionBase.cs" />
+    <Compile Include="DataContracts\DataNotFoundFaultException.cs" />
     <Compile Include="DataContracts\SubscriptionData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="DataContracts\UserData.cs" />

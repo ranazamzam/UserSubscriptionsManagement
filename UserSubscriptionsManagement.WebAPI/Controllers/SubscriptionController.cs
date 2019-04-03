@@ -19,88 +19,53 @@ namespace UserSubscriptionsManagement.WebAPI.Controllers
         }
 
         #region  Actions
-        [System.Web.Http.HttpGet]
+        [HttpGet]
         [Route("{id}")]
         public IHttpActionResult GetSubscriptionById(Guid id)
         {
-            try
-            {
-                var subscription = _subscriptionService.GetSubscriptionById(id);
+            var subscription = _subscriptionService.GetSubscriptionById(id);
 
-                return Ok(subscription);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An exception occured.");
-            }
+            return Ok(subscription);
         }
 
         [HttpGet]
         public IHttpActionResult GetAllSubscriptions()
         {
-            try
-            {
-                var subscriptions = _subscriptionService.GetAllSubscriptions();
+            var subscriptions = _subscriptionService.GetAllSubscriptions();
 
-                if (subscriptions.Any())
-                {
-                    return Ok(subscriptions);
-                }
-
-                return NotFound();
-            }
-            catch (Exception ex)
+            if (subscriptions.Any())
             {
-                throw new Exception("An exception occured.");
+                return Ok(subscriptions);
             }
+
+            return NotFound();
         }
 
         [HttpPost]
         public IHttpActionResult AddSubscription(SubscriptionData subscription)
         {
-            try
-            {
-                var newId = _subscriptionService.AddSubscription(subscription);
+            var newId = _subscriptionService.AddSubscription(subscription);
 
-                return Ok(subscription);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An exception occured.");
-            }
+            return Ok(subscription);
         }
 
 
         [HttpPut]
         [Route("{id}")]
-        public IHttpActionResult UpdateSubscription(Guid id)
+        public IHttpActionResult UpdateSubscription(Guid id, SubscriptionData subscriptionData)
         {
-            try
-            {
-                var success = _subscriptionService.UpdateSubscription(id);
+            var success = _subscriptionService.UpdateSubscription(id, subscriptionData);
 
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An exception occured.");
-            }
+            return Ok();
         }
 
         [HttpDelete]
         [Route("{id}")]
         public IHttpActionResult DeleteSubscription(Guid id)
         {
-            try
-            {
-                var success = _subscriptionService.DeleteSubscription(id);
+            var success = _subscriptionService.DeleteSubscription(id);
 
-                return Ok();
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("An exception occured.");
-            }
+            return Ok();
         }
         #endregion
     }
